@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<title>students</title>
+<style>
+  .user:hover {
+    cursor: pointer
+  }
+</style>
+
+<body class="stellar">
+
+  <div class="top-img">
+      <img src="/login/faculty/images/institute1.PNG" alt="" >
+  </div>
+
+
+
+        <div class="panel-wrapper">
+          <div class="panel">
+            <div class="panel-heading">
+              <br>
+              <h6><center>LIST OF STUDENTS</center></h6>
+              <button  id="logout" class="profile-edit-btn" style="background-color:lightgreen;float:right">logout</button>
+            </div>
+            <div class="panel-body">
+              <div class="demo-grid">
+
+                <!-- RESPONSIVE TABLE-->
+                <div class="table-responsive" id="customers">
+                  <table class="table" border="1px solid" data-plugin="DataTable">
+                    <thead class="thead-inverse">
+                      <tr>
+                        <th>REGISTRATION NUMBER</th>
+                        <th>NAME</th>
+                        <th>ADMISSION YEAR</th>
+                        <th>Email</th>
+                        <th>PROGRAMMEE</th>
+                        <th>BRANCH</th>
+                        <th>BRANCH</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#each users}}
+                      <tr class="user" data-link="/users/view/{{this.key}}/">
+                        <td>{{this.regno}}</td>
+                        <td>{{this.name}}</td>
+                        <td>{{this.admissionYear}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.programme}}</td>
+                        <td>{{this.branch}}</td>
+                        <td>
+
+                               <button value="{{@key}}" style="background-color:orange;width:90%" id="view">VIEW</button><br>
+
+                               <button value="{{@key}}" style="background-color:green;width:90%" id="edit">EDIT</button><br>
+
+                               <button value="{{@key}}" style="background-color:red;width:90%" id="delete">DELETE</button>
+                             </td>
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+
+
+                </div>
+
+                <div class="table-responsive" id="table" style="display:none">
+                  <table class="table" border="1px solid">
+                    <thead class="thead-inverse">
+                      <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Thanks</th>
+                        <th>LastSeenAt</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+
+
+                </div>
+                <!-- END RESPONSIVE TABLE-->
+
+              </div>
+            </div>
+          </div>
+
+          <script>
+          $(document).ready(function(){
+             $('button').click(function(){
+          var id=$(this).attr('id');
+          var id1=$(this).attr('value');
+
+
+
+
+         if(id=='edit'){
+            window.location="http://localhost:3000/student/edit/"+id1+"/";
+          }
+
+        })
+      });
+
+          </script>
+          <script>
+          $(document).ready(function(){
+             $('button').click(function(){
+          var id=$(this).attr('id');
+          var id1=$(this).attr('value');
+
+         if(id=='view'){
+            window.location="http://localhost:3000/students/"+id1+"/";
+          }
+
+        })
+      });
+
+          </script>
+
+          <script>
+          $(document).ready(function(){
+             $('button').click(function(){
+          var id=$(this).attr('id');
+          var id1=$(this).attr('value');
+
+         if(id=='delete'){
+            window.location="http://localhost:3000/students/delete/"+id1+"/";
+          }
+
+        })
+      });
+
+          </script>
+          <script>
+          $(document).ready(function(){
+             $('button').click(function(){
+
+               var id=$(this).attr('id');
+              if(id=='logout'){
+               window.location="http://localhost:3000/logout";
+            }
+
+          })
+          });
+
+          </script>
+
+
+  </div>
+  <script>includeHTML();</script>
+  <script src="/assets/scripts/lib/jquery-1.11.3.min.js"></script>
+  <script src="/assets/scripts/lib/jquery-ui.js"></script>
+  <script src="/assets/scripts/lib/tether.min.js"></script>
+  <script src="/assets/scripts/theme/theme-plugins.js"></script>
+  <script src="/assets/scripts/theme/main.js"></script>
+  <script src="/assets/scripts/demo/demo-skin.js"></script>
+  <script src="/assets/scripts/demo/bar-chart-menublock.js"></script>
+</body>
+
+</html>

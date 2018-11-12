@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+    padding: 50px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+
+}
+body{
+  background-color:#ffe6e6;
+}
+
+
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+
+    }
+}
+</style>
+</head>
+
+<body>
+  <div class="top-img">
+      <img src="/login/faculty/images/institute1.PNG" alt="" >
+  </div>
+<form action="/student/edit/{{id}}" name="STUDENTREGISTRATIONFORM" method="post" onSubmit="return(validate());">
+
+<script>
+            var loadFile = function(event) {
+                    var image = document.getElementById('output');
+                      image.src = URL.createObjectURL(event.target.files[0]);
+                      };
+</script>
+
+    <div class="row">
+        <div class="col-sm-3 col-md-3" style="background-color:BBE3EB;">
+        </div>
+        <br>
+
+    <div class="col-sm-3 col-md-3" style="background-color:BBE3EB;">
+    </div></div>
+    <div class="col-sm-3 col-md-3" style="background-color:BBE3EB;">
+    </div>
+   <div class="col-sm-9 col-md-6" style="background-color:#c2e6ed">
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+             <label for="fname">1.Full Name :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="text" id="fname" name="firstname" placeholder="Full Name" value="{{student.name}}">
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="dob">2.Date of Birth :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="date" name="dob" value="{{student.dob}}">
+    </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="branch">3.Branch :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <select id="branch" name="branch">
+          <option value="{{student.branch}}" selected >{{student.branch}}</option>
+          <option value="cse">Computer science and Engineering</option>
+          <option value="ece">Electronics and Communication Engineering</option>
+          <option value="IT">Information Technology</option>
+        </select>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="ayear">4.Admission Year :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="number" id="ayear" name="ayear"  value="{{student.admissionYear}}">
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="pwd">5.PwD :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="radio" name="pwd" value="yes" {{checkEqual student.pwd 'yes'}}> Yes
+         <input type="radio" name="pwd" value="no" {{checkEqual student.pwd 'no'}}> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="paddress">6.Permanent Address :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <!-- <textarea id="paddress" name="paddress" style="height:100px" value="{{student.paddress}}"></textarea> -->
+        <input type="text" id="paddress" name="paddress"  value="{{student.paddress}}">
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="mnumber">7.Mobile No :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="tel" id="mnumber" name="mnumber" placeholder="***-***-****" value="{{student.mnumber}}">
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="email">8.Email :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="email" id="email" name="email" placeholder="asa.asd@*****.com" value="{{student.email}}">
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+             <label for="fname">9.Password :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="password" id="pass" name="pass"  value="{{student.password}}">
+    </div>
+    </div>
+
+    
+    <div class="row">
+             <h3>10.Family Details :</h3><br>
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <label for="nfather">a)Name of Father :</label><br><br>
+        <label for="noccupation">Occupation:</label><br><br>
+        <label for="qual">Qualification :</label><br><br>
+        <label for="mno">Mobile No :</label><br><br>
+        <label for="femail">Email id :</label><br><br>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="text" id="nfather" name="nfather" placeholder="" value="{{student.nfather}}"><br><br>
+        <input type="text" id="noccupation" name="noccupation" placeholder="" value="{{student.foccupation}}"><br><br>
+        <input type="text" id="qual" name="qual" placeholder="" value="{{student.fqualification}}"><br><br><br>
+        <input type="tel" id="mno" name="mno" placeholder="***-***-****" value="{{student.fmobile}}"><br><br><br>
+        <input type="email" id="femail" name="femail" placeholder="asa.asd@*****.com" value="{{student.femail}}"><br><br><br>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <label for="nmother">B.Name of Mother :</label><br><br>
+        <label for="moccupation">Occupation :</label><br><br>
+        <label for="mqual">Qualification :</label><br><br>
+        <label for="mmno">Mobile no :</label><br><br>
+        <label for="memail">Email id :</label><br><br>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="text" id="nmother" name="nmother" placeholder="" value="{{student.nmother}}"><br><br>
+        <input type="text" id="moccupation" name="moccupation" placeholder="" value="{{student.moccupation}}"><br><br>
+        <input type="text" id="mqual" name="mqual" placeholder="" value="{{student.mqualification}}"><br><br><br>
+        <input type="tel" id="mmno" name="mmno" placeholder="***-***-****"  value="{{student.mmobile}}"><br><br><br>
+        <input type="email" id="memail" name="memail" placeholder="asa.asd@*****.com" value="{{student.memail}}"><br><br><br>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="amount">11.Amount of acceptance Feepaid :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="number" id="amount" name="amount" placeholder="" value="{{student.amount}}">
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <label for="bamount">12. a)Balance Amount paid by SBI Fee collect:</label><br><br>
+        <label for="dchellan">&nbsp;&nbsp;&nbsp;&nbsp;b)Details of Chellan(transaction number):</label><br><br>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="number" id="bamount" name="bamount" placeholder="" value="{{student.balanceamount}}"><br><br><br>
+        <input type="text" id="dchellan" name="dchellan" placeholder="" value="{{student.dchellan}}"><br><br><br>
+    </div>
+    </div>
+
+    <div class="row">
+     <h3>13.Certificates attached(Please tick) :</h3><br>
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+          <label for="pyes">1).Provisional Seat Allocation/admission Letter :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="radio" name="pyes" value="yes" {{checkEqual student.psa 'yes'}}> Yes
+           <input type="radio" name="pyes" value="no" {{checkEqual student.psa 'no'}}> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label name="oyes" for="">2)Original Admit Card of JEE(Main)2018 :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+     <input type="radio" name="oyes" value="yes" {{checkEqual student.oac 'yes'}}> Yes
+         <input type="radio" name="oyes" value="no" {{checkEqual student.oac 'no'}}> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="">3)Score Card of JEE(main) 2018 :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="radio" name="syes" value="yes" {{checkEqual student.scj 'yes'}}> Yes
+         <input type="radio" name="syes" value="no" {{checkEqual student.scj 'no'}}> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+     <label for="10yes">4)10th Standard / Matriculation or Equivalent Certificate or any other certificate issued by Government authorities         as proof of date of birth :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+     <input type="radio" name="tenyes" value="yes" {{checkEqual student.mac 'yes'}}> Yes
+         <input type="radio" name="tenyes" value="no" {{checkEqual student.mac 'no'}}> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="myes">5)Medical examination Report produced at the time of reporting :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="radio" name="myes" value="yes" {{checkEqual student.medac 'yes'}}> Yes
+         <input type="radio" name="myes" value="no" {{checkEqual student.medac 'no'}}> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="cyes">6)Character and conduct certificate from the instuition last attended :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="radio" name="cyes" value="yes" {{checkEqual student.cccert 'yes'}}> Yes
+         <input type="radio" name="cyes" value="no" {{checkEqual student.cccert 'no'}}> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="ryes">7)Receipt of fee paid at SBI Fee collect :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="radio" name="ryes" value="yes" {{checkEqual student.resbi 'yes'}}> Yes
+         <input type="radio" name="ryes" value="no" {{checkEqual student.resbi 'no'}}> No
+    </div>
+    </div>
+
+   <center>
+    <div class="row">
+      <button type="submit" class="btn btn-default" style="background-color:#7CFC00;">Submit</button>
+  </div>
+</center>
+
+<div>
+    </div>
+
+</div>
+    <div class="col-sm-3 col-md-3">
+
+    </div>
+<div>
+
+</form>
+</body>
+</html>
+
+<script>
+
+function validate()
+{
+   if( document.STUDENTREGISTRATIONFORM.firstname.value == "" )
+   {
+     alert( "Please provide your Name!" );
+     document.STUDENTREGISTRATIONFORM.firstname.focus() ;
+     return false;
+   }
+
+   if( document.STUDENTREGISTRATIONFORM.dob.value == "" )
+   {
+     alert( "Please provide your DOB!" );
+     document.STUDENTREGISTRATIONFORM.dob.focus() ;
+     return false;
+   }
+
+    if( document.STUDENTREGISTRATIONFORM.programme.value == "-1" )
+   {
+     alert( "Please provide Programme!" );
+     document.STUDENTREGISTRATIONFORM.programme.focus() ;
+     return false;
+   }
+
+    if( document.STUDENTREGISTRATIONFORM.branch.value == "-1" )
+   {
+     alert( "Please provide branch!" );
+     document.STUDENTREGISTRATIONFORM.branch.focus() ;
+     return false;
+   }
+      if( document.STUDENTREGISTRATIONFORM.ayear.value == "" )
+   {
+     alert( "Please provide Admission Year!" );
+     document.STUDENTREGISTRATIONFORM.ayear.focus() ;
+     return false;
+   }
+
+   if( document.STUDENTREGISTRATIONFORM.nlag.value == "" )
+   {
+     alert( "Please provide your Native Language!" );
+     document.STUDENTREGISTRATIONFORM.nlag.focus() ;
+     return false;
+   }
+    if( document.STUDENTREGISTRATIONFORM.bgroup.value == "" )
+   {
+     alert( "Please provide your Blood Group!" );
+     document.STUDENTREGISTRATIONFORM.bgroup.focus() ;
+     return false;
+   }
+    if( document.STUDENTREGISTRATIONFORM.jrank.value == "" || document.STUDENTREGISTRATIONFORM.jrank.value !<1)
+   {
+     alert( "Please provide your JEE Main Rank!" );
+     document.STUDENTREGISTRATIONFORM.jrank.focus() ;
+     return false;
+   }
+   if( document.STUDENTREGISTRATIONFORM.paddress.value == "" )
+   {
+     alert( "Please provide your Permanent Address!" );
+     document.STUDENTREGISTRATIONFORM.paddress.focus() ;
+     return false;
+   }
+   if( document.STUDENTREGISTRATIONFORM.mnumber.value == "" ||
+           isNaN( document.STUDENTREGISTRATIONFORM.mnumber.value) ||
+           document.STUDENTREGISTRATIONFORM.mnumber.value.length != 10 )
+   {
+     alert( "Please enter valid Mobile No " );
+     document.STUDENTREGISTRATIONFORM.mnumber.focus() ;
+     return false;
+   }
+
+   var email = document.STUDENTREGISTRATIONFORM.email.value;
+  atpos = email.indexOf("@");
+  dotpos = email.lastIndexOf(".");
+ if (email == "" || atpos < 1 || ( dotpos - atpos < 2 ))
+ {
+     alert("Please enter correct email ID")
+     document.STUDENTREGISTRATIONFORM.email.focus() ;
+     return false;
+ }
+
+  if( document.STUDENTREGISTRATIONFORM.pass.value == "" )
+   {
+     alert( "Please set your Password!" );
+     document.STUDENTREGISTRATIONFORM.pass.focus() ;
+     return false;
+   }
+
+    if( document.STUDENTREGISTRATIONFORM.caddress.value == "" )
+   {
+     alert( "Please provide your Current Address!" );
+     document.STUDENTREGISTRATIONFORM.caddress.focus() ;
+     return false;
+   }
+    if( document.STUDENTREGISTRATIONFORM.aqdegree.value == "" )
+   {
+     alert( "Please provide your Qualification!" );
+     document.STUDENTREGISTRATIONFORM.aqdegree.focus() ;
+     return false;
+   }
+    if( document.STUDENTREGISTRATIONFORM.buniversity.value == "" )
+   {
+     alert( "Please Enter name of the University!" );
+     document.STUDENTREGISTRATIONFORM.buniversity.focus() ;
+     return false;
+   }
+    if( document.STUDENTREGISTRATIONFORM.medium.value == "" )
+   {
+     alert( "Please enter medium !" );
+     document.STUDENTREGISTRATIONFORM.medium.focus() ;
+     return false;
+   }
+    if( document.STUDENTREGISTRATIONFORM.ymonth.value == "" )
+   {
+     alert( "Please enter Year and Month!" );
+     document.STUDENTREGISTRATIONFORM.ymonth.focus() ;
+     return false;
+   }
+
+
+   if( document.STUDENTREGISTRATIONFORM.abreak.value == "" )
+   {
+     alert( "Please mention whether there is a break after qualified degree!" );
+     document.STUDENTREGISTRATIONFORM.abreak.focus() ;
+     return false;
+   }
+
+
+    if( document.STUDENTREGISTRATIONFORM.ifyes.value == "" )
+   {
+     alert( "If Yes Please  Enter reason!" );
+     document.STUDENTREGISTRATIONFORM.ifyes.focus() ;
+     return false;
+   }
+    if( document.STUDENTREGISTRATIONFORM.ms1.value == "" )
+   {
+     alert( "Please provide Marks in Subject 1!" );
+     document.STUDENTREGISTRATIONFORM.ms1.focus() ;
+     return false;
+   }
+       if( document.STUDENTREGISTRATIONFORM.ms2.value == "" )
+   {
+     alert( "Please provide Marks in Subject 2!" );
+     document.STUDENTREGISTRATIONFORM.ms2.focus() ;
+     return false;
+   }
+       if( document.STUDENTREGISTRATIONFORM.ms3.value == "" )
+   {
+     alert( "Please provide Marks in Subject 3!" );
+     document.STUDENTREGISTRATIONFORM.ms3.focus() ;
+     return false;
+   }
+       if( document.STUDENTREGISTRATIONFORM.ms4.value == "" )
+   {
+     alert( "Please provide Marks in Subject 4!" );
+     document.STUDENTREGISTRATIONFORM.ms4.focus() ;
+     return false;
+   }
+       if( document.STUDENTREGISTRATIONFORM.ms5.value == "" )
+   {
+     alert( "Please provide Marks in Subject 5!" );
+     document.STUDENTREGISTRATIONFORM.ms5.focus() ;
+     return false;
+   }
+       if( document.STUDENTREGISTRATIONFORM.ms6.value == "" )
+   {
+     alert( "Please provide Marks in Subject 6!" );
+     document.STUDENTREGISTRATIONFORM.ms6.focus() ;
+     return false;
+   }
+       if( document.STUDENTREGISTRATIONFORM.tqdegree.value == "" )
+   {
+     alert( "Please provide Total Marks !" );
+     document.STUDENTREGISTRATIONFORM.tqdegree.focus() ;
+     return false;
+   }
+       if( document.STUDENTREGISTRATIONFORM.nfather.value == "" )
+   {
+     alert( "Please provide Father Name!" );
+     document.STUDENTREGISTRATIONFORM.nfather.focus() ;
+     return false;
+   }
+       if( document.STUDENTREGISTRATIONFORM.noccupation.value == "" )
+   {
+     alert( "Please provide Fathers's occupation!" );
+     document.STUDENTREGISTRATIONFORM.noccupation.focus() ;
+     return false;
+   }
+       if( document.STUDENTREGISTRATIONFORM.qual.value == "" )
+   {
+     alert( "Please provide Father's Qualification!" );
+     document.STUDENTREGISTRATIONFORM.qual.focus() ;
+     return false;
+   }
+   if( document.STUDENTREGISTRATIONFORM.mmno.value == "" ||
+           isNaN( document.STUDENTREGISTRATIONFORM.mmno.value) ||
+           document.STUDENTREGISTRATIONFORM.mmno.value.length != 10 )
+   {
+     alert( "Please provide a Mobile No in the format 123." );
+     document.STUDENTREGISTRATIONFORM.mmno.focus() ;
+     return false;
+   }
+  var email = document.STUDENTREGISTRATIONFORM.femail.value;
+  atpos = email.indexOf("@");
+  dotpos = email.lastIndexOf(".");
+ if (email == "" || atpos < 1 || ( dotpos - atpos < 2 ))
+ {
+     alert("Please enter correct email ID")
+     document.STUDENTREGISTRATIONFORM.femail.focus() ;
+     return false;
+ }
+ if( document.STUDENTREGISTRATIONFORM.nmother.value == "" )
+   {
+     alert( "Please provide Mother's Name!" );
+     document.STUDENTREGISTRATIONFORM.nmother.focus() ;
+     return false;
+   }
+   if( document.STUDENTREGISTRATIONFORM.moccupation.value == "" )
+   {
+     alert( "Please provide Mother's Occupation!" );
+     document.STUDENTREGISTRATIONFORM.moccupation.focus() ;
+     return false;
+   }
+   if( document.STUDENTREGISTRATIONFORM.mqual.value == "" )
+   {
+     alert( "Please provide Mother's Qualification!" );
+     document.STUDENTREGISTRATIONFORM.mqual.focus() ;
+     return false;
+   }
+   if( document.FACULTYREGISTRATIONFORM.mmno.value == "" ||
+           isNaN( document.FACULTYREGISTRATIONFORM.mmno.value) ||
+           document.FACULTYREGISTRATIONFORM.mmno.value.length != 10 )
+   {
+     alert( "Please provide a Mobile No in the format 123." );
+     document.FACULTYREGISTRATIONFORM.mmno.focus() ;
+     return false;
+   }
+
+   var email = document.STUDENTREGISTRATIONFORM.memail.value;
+  atpos = email.indexOf("@");
+  dotpos = email.lastIndexOf(".");
+ if (email == "" || atpos < 1 || ( dotpos - atpos < 2 ))
+ {
+     alert("Please enter correct email ID")
+     document.STUDENTREGISTRATIONFORM.memail.focus() ;
+     return false;
+ }
+
+  if( document.STUDENTREGISTRATIONFORM.amount.value == "" )
+   {
+     alert( "Please provide Amount!" );
+     document.STUDENTREGISTRATIONFORM.amount.focus() ;
+     return false;
+   }
+    if( document.STUDENTREGISTRATIONFORM.bamount.value == "" )
+   {
+     alert( "Please provide Balance Amount!" );
+     document.STUDENTREGISTRATIONFORM.bamount.focus() ;
+     return false;
+   }
+
+    if( document.STUDENTREGISTRATIONFORM.dchellan.value == "" )
+   {
+     alert( "Please provide Challan Details!" );
+     document.STUDENTREGISTRATIONFORM.dchellan.focus() ;
+     return false;
+   }
+   return( true )
+}
+
+</script>

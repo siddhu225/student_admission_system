@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="libs/base64.js"></script>
+<script>
+$(document).ready(function(){
+    $('#show').click(function() {
+      $('.menu').toggle("slide");
+    });
+});
+</script>
+
+<style>
+
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+    padding: 50px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+
+}
+body{
+  background-color:#ffe6e6;
+}
+
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+
+    }
+}
+</style>
+</head>
+
+<body>
+  <div class="top-img">
+      <img src="/login/faculty/images/institute1.PNG" alt="" >
+  </div>
+
+<form action="/student/signin" name="STUDENTREGISTRATIONFORM" method="post" onSubmit="return(validate());">
+
+<script>
+            var loadFile = function(event) {
+                    var image = document.getElementById('output');
+                      image.src = URL.createObjectURL(event.target.files[0]);
+                      };
+</script>
+
+    <div class="row">
+        <div class="col-sm-3 col-md-3" style="background-color:BBE3EB;">
+        </div>
+    <center>
+    <div class="col-sm-3 col-md-6" style="background-color:BBE3EB;">
+    <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+    <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+    <p><img id="output" width="200" height="150" /></p>
+    </div></center>
+
+    <div class="col-sm-3 col-md-3" style="background-color:BBE3EB;">
+    </div></div>
+<div class="row">
+    <div class="col-sm-3 col-md-3" style="background-color:BBE3EB;">
+    </div>
+   <div class="col-sm-9 col-md-6" style="background-color:#c2e6ed">
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+             <label for="fname">1.Full Name :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="text" id="fname" name="fname" placeholder="Full Name" required>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="dob">2.Date of Birth :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="date" name="dob" required>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="programme">3.Programme :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <select id="programme" name="programme" required>
+          <option value="-1" selected>select..</option>
+          <option value="b.tech">B.tech</option>
+          <option value="ph.d">ph.d</option>
+          <option value="b.a">B.A</option>
+        </select>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="branch">4.Branch :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <select id="branch" name="branch" required>
+          <option value="-1" selected>select..</option>
+          <option value="cse">Computer science and Engineering</option>
+          <option value="ece">Electronics and Communication Engineering</option>
+          <option value="IT">Information Technology</option>
+        </select>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="ayear">5.Admission Year :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="number" id="ayear" name="ayear" placeholder="admission year" required>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="branch">6.Blood Group :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <select id="blood" name="blood" required>
+          <option value="-1" selected>select..</option>
+          <option value="Ap">A+</option>
+          <option value="An">A-</option>
+          <option value="Bp">B+</option>
+          <option value="Bn">B-</option>
+          <option value="ABp">AB+</option>
+          <option value="ABn">AB-</option>
+          <option value="Op">O+</option>
+          <option value="On">O-</option>
+        </select>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="gender">7.Gender :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+     <input type="radio" name="gender" value="male" required> Male
+         <input type="radio" name="gender" value="female" required> Female
+         <input type="radio" name="gender" value="other" required> Other
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="category">8.Category :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="radio" name="category" value="gen" required>GEN
+         <input type="radio" name="category" value="obcncl" required>OBC-NCL
+         <input type="radio" name="category" value="sc" required>SC
+         <input type="radio" name="category" value="st" required>ST
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="pwd">9.PwD :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="radio" name="pwd" value="yes" required> Yes
+         <input type="radio" name="pwd" value="no" required> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="nlang">10.Native Language :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="text" id="nlang" name="nlang" placeholder="nativelanguage" required><br>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="jrank">11.JEE main entrance rank :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="number" id="jrank" name="jrank" placeholder="jee mains rank" required>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="paddress">12.Permanent Address :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+         <input type="text" id="paddress" name="paddress" placeholder="your address" style="height:100px" required><br>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="mnumber">13.Mobile No :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="tel" id="mnumber" name="mnumber" placeholder="***-***-****" required>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="email">14.Email :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="email" id="email" name="email" placeholder="asa.asd@*****.com" required>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+             <label for="fname">15.Password :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="password" id="pass" name="pass" placeholder="*********" required>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="caddress">16.Communication Address :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+         <input type="text" id="caddress" name="caddress" placeholder="your communication address" style="height:100px" required>
+    </div>
+    </div>
+
+
+
+    <div class="row">
+             <h3>17.Family Details :</h3><br>
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <label for="nfather">A.Name of Father :</label><br><br>
+        <label for="noccupation">1)Occupation:</label><br><br>
+        <label for="qual">2)Qualification :</label><br><br>
+        <label for="mno">3)Mobile No :</label><br><br>
+        <label for="femail">4)Email id :</label><br><br>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;" required>
+    <input type="text" id="nfather" name="nfather" placeholder="" required><br><br>
+        <input type="text" id="noccupation" name="noccupation" placeholder="" required><br><br>
+        <input type="text" id="qual" name="qual" placeholder="" required><br><br><br>
+        <input type="tel" id="mno" name="mno" placeholder="***-***-****" required><br><br><br>
+        <input type="email" id="femail" name="femail" placeholder="asa.asd@*****.com" required><br><br><br>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <label for="nmother">B.Name of Mother :</label><br><br>
+        <label for="moccupation">1)Occupation :</label><br><br>
+        <label for="mqual">2)Qualification :</label><br><br>
+        <label for="mmno">3)Mobile no :</label><br><br>
+        <label for="memail">4)Email id :</label><br><br>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="text" id="nmother" name="nmother" placeholder="" required><br><br>
+        <input type="text" id="moccupation" name="moccupation" placeholder="" required><br><br>
+        <input type="text" id="mqual" name="mqual" placeholder="" required><br><br><br>
+        <input type="tel" id="mmno" name="mmno" placeholder="***-***-****" required><br><br><br>
+        <input type="email" id="memail" name="memail" placeholder="asa.asd@*****.com" ><br><br><br>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="amount">18.Amount of acceptance Feepaid :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="number" id="amount" name="amount" placeholder="" required><br>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <label for="bamount">19. a)Balance Amount paid by SBI Fee collect:</label><br><br>
+        <label for="dchellan">&nbsp;&nbsp;&nbsp;&nbsp;b)Details of Chellan(transaction number):</label><br><br>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="number" id="bamount" name="bamount" placeholder="" required><br><br><br><br>
+        <input type="text" id="dchellan" name="dchellan" placeholder="" required><br><br>
+    </div>
+    </div>
+
+    <div class="row">
+     <h3>20.Certificates attached(Please tick) :</h3><br>
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+          <label for="pyes">1).Provisional Seat Allocation/admission Letter :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <input type="radio" name="pyes" value="yes" required> Yes
+           <input type="radio" name="pyes" value="no" required> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label name="oyes" for="">2)Original Admit Card of JEE(Main)2018 :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+     <input type="radio" name="oyes" value="yes" required> Yes
+         <input type="radio" name="oyes" value="no" required> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="syes">3)Score Card of JEE(main) 2018 :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="radio" name="syes" value="yes" required> Yes
+         <input type="radio" name="syes" value="no" required> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+     <label for="10yes">4)10th Standard / Matriculation or Equivalent Certificate or any other certificate issued by Government authorities         as proof of date of birth :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+     <input type="radio" name="tenyes" value="yes" required> Yes
+         <input type="radio" name="tenyes" value="no" required> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="myes">5)Medical examination Report produced at the time of reporting :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="radio" name="myes" value="yes" required> Yes
+         <input type="radio" name="myes" value="no" required> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="cyes">6)Character and conduct certificate from the instuition last attended :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="radio" name="cyes" value="yes" required> Yes
+         <input type="radio" name="cyes" value="no" required> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="ryes">7)Receipt of fee paid at SBI Fee collect :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="radio" name="ryes" value="yes" required> Yes
+         <input type="radio" name="ryes" value="no" required> No
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+        <label for="wyes">8)Whether participating in Special Rounds :</label>
+    </div>
+    <div class="col-sm-6 col-md-6" style="background-color:#c2e6ed;">
+    <input type="radio" name="wyes" value="yes" required> Yes
+         <input type="radio" name="wyes" value="no" required> No
+    </div>
+    </div>
+    <center>
+    <div class="row">
+      <button type="submit" class="btn btn-default" id="cmd" style="background-color:#7CFC00;">Submit</button>
+
+  </div>
+
+</center>
+    <!-- <button id="cmd">Generate PDF</button> -->
+
+
+<br><br><br><br><br><br>
+ <center>
+<!--<input type="button" id="show" value="Click to  show/hide preview"/>-->
+ <div  class ="menu" id="content" style="display: none;">
+
+
+
+	<center>
+
+
+
+        <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+			      <center>  <h1>Indian Institute Of Information Technology Kottayam :</h1><br></center>
+		<label for="fname"> <font size="5">1.Full Name :</font> </label>
+		                <span id="fname2"></span>
+            </div>
+
+        </div>
+ 	<br><br>
+
+
+        <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+        <label for="dob"><font size="5">2.Date of Birth :</font></label>
+                <span id="dob2"></span>
+            </div>
+        </div>
+	<br><br>
+        <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+        <label for="programme"><font size="5">3.Programme :</font></label>
+                <span id="programme2"></span>
+            </div>
+        </div>
+	<br><br>
+	 <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+        <label for="branch"><font size="5">4.Branch :</font></label>
+                <span id="branch2"></span>
+            </div>
+        </div>
+	<br><br>
+	 <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+        <label for="ayear"><font size="5">5.Admission Year :</font></label>
+                <span id="ayear2"></span>
+            </div>
+        </div>
+	<br><br>
+	 <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+        <label for="branch"><font size="5">6.Blood Group :</font></label>
+                <span id="blood2"></span>
+            </div>
+        </div>
+	<br><br>
+	<div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+ 	<label for="gender"><font size="5">7.Gender :</font></label>
+                <span id="gender2"></span>
+            </div>
+	</div>
+	<br><br>
+	<div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+        <label for="category"><font size="5">8.Category :</font></label>
+                <span id="category2"></span>
+            </div>
+	</div>
+	<br><br>
+	<div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+        <label for="pwd"><font size="5">9.PwD :</font></label>
+                <span id="pwd2"></span>
+            </div>
+	</div>
+	<br><br>
+	 <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+        <label for="nlang"><font size="5">10.Native Language :</font></label>
+                <span id="nlang2"></span>
+            </div>
+        </div>
+	<br><br>
+	 <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+        <label for="jrank"><font size="5">11.JEE main entrance rank :</font></label>
+                <span id="jrank2"></span>
+            </div>
+        </div>
+	<br><br>
+	 <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+	        <label for="paddress"><font size="5">12.Permanent Address :</font></label>
+                <span id="paddress2"></span>
+            </div>
+        </div><br><br>
+	 <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+        <label for="mnumber"><font size="5">13.Mobile No :</font></label>
+                <span id="mnumber2"></span>
+            </div>
+        </div><br><br>
+	 <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+        <label for="email"><font size="5">14.Email :</font></label>
+                <span id="email2"></span>
+            </div>
+        </div><br><br>
+	 <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+             <label for="pass"><font size="5">15.Password :</font></label>
+                <span id="pass2"></span>
+            </div>
+        </div>
+	<br><br>
+	 <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+        <label for="caddress"><font size="5">16.Communication Address :</font></label>
+                <span id="caddress2"></span>
+            </div>
+        </div>
+	<br><br>
+	    <div class="row">
+
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+	        <h3><font size="6">17.Family Details :</font></h3><br>
+    <label for="nfather"><font size="5">A)Name of Father :</font></label>
+                <span id="nfather2"></span>
+            </div>
+        </div><br><br>
+
+         <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+    <label for="noccupation"><font size="5">1)Occupation:</font></label>
+                <span id="noccupation2"></span>
+            </div>
+        </div><br><br>
+
+
+         <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+   <label for="qual"><font size="5">2)Qualification :</font></label>
+                <span id="qual2"></span>
+            </div>
+        </div><br><br>
+
+        <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+   <label for="mno"><font size="5">3)Mobile No :</font></label>
+                <span id="mno2"></span>
+            </div>
+        </div><br><br>
+
+        <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+   <label for="femail"><font size="5">4)Email id :</font></label>
+                <span id="femail2"></span>
+            </div>
+        </div><br><br>
+</div>
+ <div  class ="menu" id="content1" style="display: none;">
+
+    <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+    <label for="nmother"><font size="5">B)Name of Mother :</font></label>
+                <span id="nmother2"></span>
+            </div>
+        </div><br><br>
+
+    <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+     <label for="moccupation"><font size="5">1)Occupation :</font></label>
+                <span id="moccupation2"></span>
+            </div>
+        </div><br><br>
+
+    <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+      <label for="mqual"><font size="5">2)Qualification :</font></label>
+                <span id="mqual2"></span>
+            </div>
+        </div><br><br>
+
+
+    <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+      <label for="mmno"><font size="5">3)Mobile no :</font></label>
+                <span id="mmno2"></span>
+            </div>
+        </div><br><br>
+
+    <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+      <label for="memail"><font size="5">4)Email id :</font></label>
+                <span id="memail2"></span>
+            </div>
+        </div><br><br>
+
+ <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+        <label for="amount"><font size="5">18.Amount of acceptance Feepaid :</font></label>
+        <span id="amount2"></span>
+    </div>
+</div><br><br>
+    <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+       <label for="bamount"><font size="5">19. a)Balance Amount paid by SBI Fee collect:</font></label>
+        <span id="bamount2"></span>
+    </div>
+</div><br><br>
+    <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+       <label for="dchellan">&nbsp;&nbsp;&nbsp;&nbsp;<font size="5">b)Details of Chellan(transaction number):</font></label>
+        <span id="dchellan2"></span>
+    </div>
+</div>
+<br><br>
+
+<div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+		     <h1>20.Certificates attached :</h1><br>
+		<label for="pyes"><font size="5">1).Provisional Seat Allocation/admission Letter :</font></label>
+                <span id="pyes2"></span>
+            </div>
+
+        </div><br><br>
+
+     <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+		<label name="oyes" for=""><font size="5">2)Original Admit Card of JEE(Main)2018 :</font></label>
+                <span id="oyes2"></span>
+            </div><br><br>
+
+        </div>
+	 <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+		<label name="syes" for=""><font size="5">3)Score Card of JEE(main) 2018 :</font></label>
+                <span id="syes2"></span>
+            </div><br><br>
+
+        </div>
+     <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+     <label for="tenyes"><font size="5">4)10th Standard / Matriculation or Equivalent Certificate or any other certificate issued by Government authorities   as proof of date of birth :</font></label>
+                <span id="tenyes2"></span>
+            </div><br><br>
+
+        </div>
+     <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+		<label for="myes"><font size="5">5)Medical examination Report produced at the time of reporting :</font></label>
+                <span id="myes2"></span>
+            </div><br><br>
+
+        </div>
+     <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+		<label for="cyes"><font size="5">6)Character and conduct certificate from the instuition last attended :</font></label>
+                <span id="cyes2"></span>
+            </div><br><br>
+
+        </div>
+     <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+		<label for="ryes"><font size="5">7)Receipt of fee paid at SBI Fee collect :</font></label>
+                <span id="ryes2"></span>
+            </div><br><br>
+
+        </div>
+     <div class="row">
+            <div class="col-sm-6 col-md-12" style="background-color:#c2e6ed;">
+		<label for="wyes"><font size="5">8)Whether participating in Special Rounds :</font></label>
+                <span id="wyes2"></span>
+            </div><br><br>
+
+        </div>
+
+    </div>
+
+ </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</form>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+    <script>
+        var doc = new jsPDF();
+        var specialElementHandlers = {
+            'input': function (element, renderer) {
+                return true;
+            }
+        };
+	$('input[name=fname').change(function() {
+		//console.log($('#fname').text())
+		$("span#fname2").html(this.value).css('font-size',28);
+	});
+	//$('input[type=text][name=fname]').change(function () {
+          //  $("#fname").html(this.value);
+        //});
+	 $('input[type=date][name=dob]').change(function () {
+            $("span#dob2").html(this.value).css('font-size',28);
+        });
+	 $('#programme').change(function () {
+            $("span#programme2").html(this.value).css('font-size',28);
+        });
+	 $('#branch').change(function () {
+            $("span#branch2").html(this.value).css('font-size',28);
+        });
+	 $('input[type=number][name=ayear]').change(function () {
+            $("span#ayear2").html(this.value).css('font-size',28);
+        });
+	 $('#blood').change(function () {
+            $("span#blood2").html(this.value).css('font-size',28);
+        });
+ 	$('input[type=radio][name=gender]').change(function () {
+            $("span#gender2").html(this.value).css('font-size',28);
+        });
+	$('input[type=radio][name=category]').change(function () {
+            $("span#category2").html(this.value).css('font-size',28);
+        });
+	$('input[type=radio][name=pwd]').change(function () {
+            $("span#pwd2").html(this.value).css('font-size',28);
+        });
+	$('input[type=text][name=nlang]').change(function () {
+            $("span#nlang2").html(this.value).css('font-size',28);
+        });
+	$('input[type=number][name=jrank]').change(function () {
+            $("span#jrank2").html(this.value).css('font-size',28);
+        });
+	$('input[type=text][name=paddress]').change(function () {
+            $("span#paddress2").html(this.value).css('font-size',28);
+        });
+
+	$('input[type=tel][name=mnumber]').change(function () {
+            $("span#mnumber2").html(this.value).css('font-size',28);
+        });
+	$('input[type=email][name=email]').change(function () {
+            $("span#email2").html(this.value).css('font-size',28);
+        });
+	$('input[type=password][name=pass]').change(function () {
+            $("span#pass2").html(this.value).css('font-size',28);
+        });
+	$('input[type=text][name=caddress]').change(function () {
+            $("span#caddress2").html(this.value).css('font-size',28);
+        });
+
+	$('input[type=text][name=nfather]').change(function () {
+            $("span#nfather2").html(this.value).css('font-size',28);
+        });
+    $('input[type=text][name=noccupation]').change(function () {
+            $("span#noccupation2").html(this.value).css('font-size',28);
+        });
+    $('input[type=text][name=qual]').change(function () {
+            $("span#qual2").html(this.value).css('font-size',28);
+        });
+	$('input[type=tel][name=mno]').change(function () {
+            $("span#mno2").html(this.value).css('font-size',28);
+        });
+    $('input[type=email][name=femail]').change(function () {
+            $("span#femail2").html(this.value).css('font-size',28);
+        });
+
+    $('input[type=text][name=nmother]').change(function () {
+            $("span#nmother2").html(this.value).css('font-size',28);
+        });
+
+    $('input[type=text][name=moccupation]').change(function () {
+            $("span#moccupation2").html(this.value).css('font-size',28);
+        });
+    $('input[type=text][name=mqual]').change(function () {
+            $("span#mqual2").html(this.value).css('font-size',28);
+        });
+    $('input[type=tel][name=mmno]').change(function () {
+            $("span#mmno2").html(this.value).css('font-size',28);
+        });
+    $('input[type=email][name=memail]').change(function () {
+            $("span#memail2").html(this.value).css('font-size',28);
+        });
+
+	 $('input[type=number][name=amount]').change(function () {
+            $("span#amount2").html(this.value).css('font-size',28);
+        });
+    $('input[type=number][name=bamount]').change(function () {
+            $("span#bamount2").html(this.value).css('font-size',28);
+        });
+     $('input[type=text][name=dchellan]').change(function () {
+            $("span#dchellan2").html(this.value).css('font-size',28);
+        });
+	$('input[type=radio][name=pyes]').change(function () {
+            $("span#pyes2").html(this.value).css('font-size',28);
+        });
+
+     $('input[type=radio][name=oyes]').change(function () {
+            $("span#oyes2").html(this.value).css('font-size',28);
+        });
+
+	$('input[type=radio][name=syes]').change(function () {
+            $("span#syes2").html(this.value).css('font-size',28);
+        });
+
+	$('input[type=radio][name=tenyes]').change(function () {
+            $("span#tenyes2").html(this.value).css('font-size',28);
+        });
+
+
+	$('input[type=radio][name=myes]').change(function () {
+            $("span#myes2").html(this.value).css('font-size',28);
+        });
+
+	$('input[type=radio][name=cyes]').change(function () {
+            $("span#cyes2").html(this.value).css('font-size',28);
+        });
+
+	$('input[type=radio][name=ryes]').change(function () {
+            $("span#ryes2").html(this.value).css('font-size',28);
+        });
+
+	$('input[type=radio][name=wyes]').change(function () {
+            $("span#wyes2").html(this.value).css('font-size',28);
+        });
+
+
+
+
+
+
+function validate()
+{
+
+	var fullname = $('#fname').val();
+	if(fullname==""  ){
+		alert( "name field is required" );
+		$('#fname').focus();
+		return false;
+
+	}
+	var dop = $('#dop').val();
+	if(dop==""){
+		alert( " date of birth  is required" );
+		$('#dop').focus();
+		return false;
+
+	}
+	/*
+
+	var prgm = $('#programme').val();
+	if(prgm==""  ){
+		alert( "field is required" );
+		$('#programme').focus();
+		return false;
+
+	}
+	var branch = $('#branch').val();
+	if(branch=="" ){
+		alert( "field is required" );
+		$('#branch').focus();
+		return false;
+
+	}*/
+	var admyear = $('#ayear').val();
+	if(admyear=="" || isNaN(admyear) ){
+		alert( "admission year should be valid" );
+		$('#ayear').focus();
+		return false;
+
+	}
+
+	var Nlang = $('#nlang').val();
+	if(Nlang=="" ){
+		alert( " language field is required" );
+		$('#nlang').focus();
+		return false;
+
+	}
+	var jeerank = $('#jrank').val();
+	if(jeerank=="" || isNaN(jeerank) ){
+		alert( "enter valid jee rank" );
+		$('#jrank').focus();
+		return false;
+
+	}
+	var padd = $('#paddress').val();
+	if(padd=="" ){
+		alert( " permanent address is required" );
+		$('#paddress').focus();
+		return false;
+
+	}
+
+	var mobile = $('#mnumber').val();
+	if(mobile=="" || isNaN(mobile) || mobile.length!=10){
+		alert( "Please provide a Valid  Mobile No ." );
+		$('#mnumber').focus();
+		return false;
+
+	}
+
+	var email = $('#email').val()
+	atpos = email.indexOf("@");
+  	dotpos = email.lastIndexOf(".");
+	if (email == "" || atpos < 1 || ( dotpos - atpos < 2 ))
+ 	{
+    	 	alert("Please enter correct email ID")
+		$('#email').focus();
+     		return false;
+ 	}
+	var pass = $('#pass').val();
+	if(pass=="" ){
+		alert( "pasword field is required" );
+		$('#pass').focus();
+		return false;
+
+	}
+	var commadd = $('#caddress').val();
+	if(commadd==""  ){
+		alert( "communication address is required" );
+		$('#caddress').focus();
+		return false;
+
+	}
+
+	var Fname = $('#nfather').val();
+	if(Fname==""  ){
+		alert( "father name is required" );
+		$('#nfather').focus();
+		return false;
+
+	}
+	var occu = $('#noccupation').val();
+	if(occu==""  ){
+		alert( "father occupation is required" );
+		$('#noccupation').focus();
+		return false;
+
+	}
+	var qua = $('#qual').val();
+	if(qua==""  ){
+		alert( "father qualification is required" );
+		$('#qual').focus();
+		return false;
+
+	}
+
+
+	var Fmobile = $('#mno').val();
+	if(Fmobile=="" || isNaN(Fmobile) || Fmobile.length!=10){
+		alert( "Please provide a Valid  Mobile No ." );
+		$('#mno').focus();
+		return false;
+
+	}
+
+	var Femail = $('#femail').val()
+	atpos = Femail.indexOf("@");
+  	dotpos = Femail.lastIndexOf(".");
+	if (Femail == "" || atpos < 1 || ( dotpos - atpos < 2 ))
+ 	{
+    	 	alert("Please enter correct email ID")
+		$('#femail').focus();
+     		return false;
+ 	}
+
+	var Mname = $('#nmother').val();
+	if(Mname==""  ){
+		alert( "mother name is required" );
+		$('#nmother').focus();
+		return false;
+
+	}
+	var Moccu = $('#moccupation').val();
+	if(Moccu==""  ){
+		alert( "mother occupation is required" );
+		$('#moccupation').focus();
+		return false;
+
+	}
+	var Mqua = $('#mqual').val();
+	if(Mqua==""  ){
+		alert( "mother qualification is required" );
+		$('#mqual').focus();
+		return false;
+
+	}
+
+	var Mmobile = $('#mmno').val();
+	if(Mmobile=="" || isNaN(Mmobile) || Mmobile.length!=10){
+		alert( "Please provide a Valid  Mobile No ." );
+		$('#mmno').focus();
+		return false;
+
+	}
+
+	var Memail = $('#memail').val()
+	atpos = Memail.indexOf("@");
+  	dotpos = Memail.lastIndexOf(".");
+	if (Memail == "" || atpos < 1 || ( dotpos - atpos < 2 ))
+ 	{
+    	 	alert("Please enter correct email ID")
+		$('#memail').focus();
+     		return false;
+ 	}
+
+
+	var pfee = $('#amount').val();
+	if(pfee=="" || isNaN(pfee) ){
+		alert( "Please enter the fee" );
+		$('#amount').focus();
+		return false;
+
+	}
+
+	var bamount = $('#bamount').val();
+	if(bamount=="" || isNaN(bamount) ){
+		alert( "please fill balance amount" );
+		$('#bamount').focus();
+		return false;
+
+	}
+
+	var challan = $('#dchellan').val();
+	if(challan=="" ){
+		alert( "challan details re required" );
+		$('#dchellan').focus();
+		return false;
+
+	}
+ return true ;
+
+}
+	  $('#cmd').click(function () {
+		console.log(validate());
+		if(validate()==true){
+		    doc.fromHTML($('#content').html(), 20, 20, {
+		        'width': 170,
+		        'elementHandlers': specialElementHandlers
+		    });
+			doc.addPage();
+			doc.fromHTML($('#content1').html(), 20, 20, {
+		        'width': 170,
+		        'elementHandlers': specialElementHandlers
+		    });
+
+            		doc.save('sample-file.pdf');
+		}
+        });
+    </script>
+</body>
+</html>

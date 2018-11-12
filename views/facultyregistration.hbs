@@ -1,0 +1,239 @@
+<html>
+
+  <head>
+
+  <style>
+  .table{
+    background-color: #80ced6;
+    cellpadding :2;
+    width: 50%;
+    cellspacing:10;
+
+  }
+
+  </style>
+
+
+  </head>
+
+  <body>
+
+    <div class="top-img">
+                      <img src="/login/faculty/images/institute1.PNG" alt="" >
+                  </div>
+
+  <form action="#" name="FACULTYREGISTRATIONFORM" onSubmit="return(validate());">
+
+
+   <center>
+
+     <table class="table">
+
+
+<tr>
+
+  <td colspan=2>
+
+  <center><font size=4><b>FACULTY REGISTRATION FORM</b></font></center>
+
+  </td>
+
+  </tr>
+
+
+<tr>
+
+  <td>Name</td>
+
+  <td><input type=text name="textnames" id="textname" size="30"></td>
+
+  </tr>
+
+  <tr>
+
+  <td>DOB</td>
+
+  <td><input type="date" name="dob" id="dob" size="30"></td>
+
+  </tr>
+  <td>Gender</td>
+
+  <td><input type="radio" name="Gender" value="male" size="10">Male
+
+  <input type="radio" name="Gender" value="Female" size="10">Female</td>
+
+  </tr>
+
+    <tr>
+
+  <td>EmailId</td>
+
+  <td><input type="text" name="emailid" id="emailid" size="30"></td>
+
+  </tr>
+
+  <tr>
+
+  <td>MobileNo</td>
+
+  <td><input type="tel" name="mobileno" id="mobileno" size="30"></td>
+
+  </tr>
+
+  <tr>
+
+   <td>Qualification</td>
+
+  <td><input type="text" name="qualification" id="qualification" size="30"></td>
+
+  </tr>
+
+  <tr>
+
+
+  <td>Course</td>
+
+  <td><select name="Course">
+
+  <option value="-1" selected>select..</option>
+
+  <option value="B.Tech">B.TECH</option>
+
+  <option value="Phd">PHD</option>
+
+  <option value="M.TECH">M.TECH</option>
+
+
+
+  </select></td>
+
+  </tr>
+
+
+<tr>
+
+  <td>Branch</td>
+
+  <td><select name="Branch">
+
+  <option value="-1" selected>select..</option>
+
+  <option value="CSE">CSE</option>
+
+  <option value="ECE">ECE</option>
+
+  <option value="IT">IT</option>
+
+  <option value="MECH">MECH</option>
+
+  </select></td>
+
+  </tr>
+
+
+<tr>
+
+  <td>Personal Address</td>
+
+  <td><input type="text" name="personaladdress"
+
+  id="personaladdress" size="30"></td>
+
+  </tr>
+
+
+
+  <tr>
+
+  <!--<td><input type="reset"></td>-->
+
+  <td colspan="2"><input type="submit" value="Submit Form" /></td>
+
+  </tr>
+
+  </table>
+
+</center>
+
+  </form>
+
+  </body>
+
+  </html>
+
+
+  <script>
+  function validate()
+{
+   if( document.FACULTYREGISTRATIONFORM.textnames.value == "" )
+   {
+     alert( "Please provide your Name!" );
+     document.FACULTYREGISTRATIONFORM.textnames.focus() ;
+	 return false;
+   }
+
+    if( document.FACULTYREGISTRATIONFORM.dob.value == "" )
+   {
+     alert( "Please provide your DOB!" );
+     document.FACULTYREGISTRATIONFORM.dob.focus() ;
+     return false;
+   }
+
+   if ( ( FACULTYREGISTRATIONFORM.gender[0].checked == false ) && ( FACULTYREGISTRATIONFORM.gender[1].checked == false ) )
+   {
+   alert ( "Please choose your Gender: Male or Female" );
+   return false;
+   }
+
+  var email = document.FACULTYREGISTRATIONFORM.emailid.value;
+  atpos = email.indexOf("@");
+  dotpos = email.lastIndexOf(".");
+ if (email == "" || atpos < 1 || ( dotpos - atpos < 2 ))
+ {
+     alert("Please enter correct email ID")
+     document.FACULTYREGISTRATIONFORM.emailid.focus() ;
+     return false;
+ }
+
+  if( document.FACULTYREGISTRATIONFORM.mobileno.value == "" ||
+           isNaN( document.FACULTYREGISTRATIONFORM.mobileno.value) ||
+           document.FACULTYREGISTRATIONFORM.mobileno.value.length != 10 )
+   {
+     alert( "Please provide a Mobile No in the format 123." );
+     document.FACULTYREGISTRATIONFORM.mobileno.focus() ;
+     return false;
+   }
+
+    if( document.FACULTYREGISTRATIONFORM.qualification.value == "" )
+   {
+     alert( "Please provide your Qualification!" );
+     document.FACULTYREGISTRATIONFORM.qualification.focus() ;
+     return false;
+   }
+
+
+
+   if( document.FACULTYREGISTRATIONFORM.Course.value == "-1" )
+   {
+     alert( "Please provide your Course!" );
+
+     return false;
+   }
+
+  if( document.FACULTYREGISTRATIONFORM.Branch.value == "-1" )
+   {
+     alert( "Please provide your Branch" );
+
+     return false;
+   }
+
+   if( document.FACULTYREGISTRATIONFORM.personaladdress.value == "" )
+   {
+     alert( "Please provide your Personal Address!" );
+     document.FACULTYREGISTRATIONFORM.personaladdress.focus() ;
+     return false;
+   }
+
+   return( true );
+}
+  </script>

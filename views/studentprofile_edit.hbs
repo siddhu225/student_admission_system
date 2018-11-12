@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>EDIT</title>
+
+    <!-- Icons font CSS-->
+    <link href="/login/faculty/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/login/faculty/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="/login/faculty/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/login/faculty/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/login/faculty/css/main.css" rel="stylesheet" media="all">
+</head>
+<p>Date/Time: <span id="datetime"></span></p>
+
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleString();
+</script>
+<body>
+                <div class="top-img">
+                    <img src="/login/faculty/images/institute1.PNG" alt="" >
+                </div>
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+        <div class="wrapper wrapper--w790">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <h2 class="title">STUDENT PROFILE EDIT FORM</h2>
+                </div>
+                <div class="card-body">
+                    <form action="/students/edit/{{id}}" name="studentedit" onSubmit="return(validate())" method="POST">
+                        <div class="form-row">
+                            <div class="name">Change Image</div>
+                            <div class="value">
+                                <div class="input-group">
+                                  <input type="file" name="profilepic" accept="image/*">
+                                  <input class="input--style-5" type="text" name="profilepic1" value="{{student.profilepic}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row m-b-55">
+                            <div class="name">Mobile Number</div>
+                            <div class="value">
+                                <div class="row row-refine">
+
+                                    <div class="col-9">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" type="number" name="phone" value="{{student.mnumber}}" >
+                                            <!--<label class="labeldesc">Phone Number</label>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="form-row m-b-55">
+                            <div class="name">Father Mobile Number</div>
+                            <div class="value">
+                                <div class="row row-refine">
+
+                                    <div class="col-9">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" type="number" name="fphone" value="{{student.fmobile}}" >
+                                            <!--<label class="labeldesc">Phone Number</label>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="form-row m-b-55">
+                            <div class="name">Mother Mobile Number</div>
+                            <div class="value">
+                                <div class="row row-refine">
+
+                                    <div class="col-9">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" type="number" name="mphone" value="{{student.mmobile}}" >
+
+                                            <!--<label class="labeldesc">Phone Number</label>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="form-row">
+                            <div class="name">Address</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="text" name="address" value="{{student.paddress}}" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Father Email</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="email" name="femail" value="{{student.femail}}" >
+                                </div>
+                            </div>
+                        </div>
+						<div class="form-row">
+                            <div class="name">Mother Email</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="email" name="memail" value="{{student.memail}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn--radius-2 btn--red" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="/login/faculty/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="/login/faculty/vendor/select2/select2.min.js"></script>
+    <script src="/login/faculty/vendor/datepicker/moment.min.js"></script>
+    <script src="/login/faculty/vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="/login/faculty/js/global.js"></script>
+
+</body>
+
+</html>
+<script>
+function validate()
+{
+if( document.facultyregistration.phone.value == "" ||
+           isNaN( document.facultyregistration.phone.value) ||
+           document.facultyregistration.phone.value.length != 10 )
+   {
+     alert( "Please provide a valid  Mobile No " );
+     document.facultyregistration.fphone.focus() ;
+     return false;
+   }
+if( document.facultyregistration.fphone.value == "" ||
+           isNaN( document.facultyregistration.fphone.value) ||
+           document.facultyregistration.fphone.value.length != 10 )
+   {
+     alert( "Please provide a valid  Mobile No " );
+     document.facultyregistration.fphone.focus() ;
+     return false;
+   }
+   if( document.facultyregistration.mphone.value == "" ||
+           isNaN( document.facultyregistration.mphone.value) ||
+           document.facultyregistration.mphone.value.length != 10 )
+   {
+     alert( "Please provide a valid  Mobile No " );
+     document.facultyregistration.mphone.focus() ;
+     return false;
+   }
+   return( true );
+}
+</script>
+<script>
+            var loadFile = function(event) {
+                    var image = document.getElementById('output');
+                      image.src = URL.createObjectURL(event.target.files[0]);
+                      };
+</script>
+<!-- end document-->
